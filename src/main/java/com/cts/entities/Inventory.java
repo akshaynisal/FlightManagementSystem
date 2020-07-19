@@ -2,6 +2,7 @@ package com.cts.entities;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "inventory")
@@ -23,6 +24,10 @@ public class Inventory {
     @Column(name = "count")
     private Integer count;
 
+    @OneToMany(targetEntity = Flight.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "inv_id")
+    private List<Flight> flight;
+
     public Long getInvId() {
         return invId;
     }
@@ -37,6 +42,14 @@ public class Inventory {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public List<Flight> getFlight() {
+        return flight;
+    }
+
+    public void setFlight(List<Flight> flight) {
+        this.flight = flight;
     }
 
     @Override

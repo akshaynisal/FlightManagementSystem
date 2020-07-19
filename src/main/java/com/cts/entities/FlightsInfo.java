@@ -1,8 +1,8 @@
 package com.cts.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "flights_info")
@@ -22,6 +22,14 @@ public class FlightsInfo {
     @Column(name = "flight_infoid")
     private Long flightInfoId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private AirlineInfo airlineInfo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private FlightInfo  flightInfo;
+
     public Long getAirlineId() {
         return airlineId;
     }
@@ -36,6 +44,22 @@ public class FlightsInfo {
 
     public void setFlightInfoId(Long flightInfoId) {
         this.flightInfoId = flightInfoId;
+    }
+
+    public AirlineInfo getAirlineInfo() {
+        return airlineInfo;
+    }
+
+    public void setAirlineInfo(AirlineInfo airlineInfo) {
+        this.airlineInfo = airlineInfo;
+    }
+
+    public FlightInfo getFlightInfo() {
+        return flightInfo;
+    }
+
+    public void setFlightInfo(FlightInfo flightInfo) {
+        this.flightInfo = flightInfo;
     }
 
     @Override

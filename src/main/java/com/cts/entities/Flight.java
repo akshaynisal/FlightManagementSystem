@@ -1,7 +1,7 @@
 package com.cts.entities;
 
 
-import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -21,7 +21,7 @@ public class Flight {
         this.flightNumber = flightNumber;
         this.flightTime = flightTime;
         this.origin = origin;
-        FareId = fareId;
+        this.fareId = fareId;
         this.flightInfoid = flightInfoid;
         this.invId = invId;
     }
@@ -52,13 +52,26 @@ public class Flight {
     private String origin;
 
     @Column(name = "fare_id")
-    private Long FareId;
+    private Long fareId;
 
     @Column(name = "flight_infoid")
     private Long flightInfoid;
 
     @Column(name = "inv_id")
     private Long invId;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Fare fare;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private FlightInfo fligthInfo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Inventory inventory;
 
     public Long getId() {
         return id;
@@ -117,11 +130,11 @@ public class Flight {
     }
 
     public Long getFareId() {
-        return FareId;
+        return fareId;
     }
 
     public void setFareId(Long fareId) {
-        FareId = fareId;
+        this.fareId = fareId;
     }
 
     public Long getFlightInfoid() {
@@ -140,6 +153,30 @@ public class Flight {
         this.invId = invId;
     }
 
+    public Fare getFare() {
+        return fare;
+    }
+
+    public void setFare(Fare fare) {
+        this.fare = fare;
+    }
+
+    public FlightInfo getFligthInfo() {
+        return fligthInfo;
+    }
+
+    public void setFligthInfo(FlightInfo fligthInfo) {
+        this.fligthInfo = fligthInfo;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
     @Override
     public String toString() {
         return "Flight{" +
@@ -150,7 +187,7 @@ public class Flight {
                 ", flightNumber='" + flightNumber + '\'' +
                 ", flightTime=" + flightTime +
                 ", origin='" + origin + '\'' +
-                ", FareId=" + FareId +
+                ", FareId=" + fareId +
                 ", flightInfoid=" + flightInfoid +
                 ", invId=" + invId +
                 '}';

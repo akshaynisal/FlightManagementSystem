@@ -1,6 +1,7 @@
 package com.cts.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "fare")
@@ -25,6 +26,10 @@ public class Fare {
     @Column(name = "fare")
     private Double fare;
 
+    @OneToMany(targetEntity = Flight.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fare_id")
+    private List<Flight> flight;
+
     public Long getFareId() {
         return fareId;
     }
@@ -47,6 +52,14 @@ public class Fare {
 
     public void setFare(Double fare) {
         this.fare = fare;
+    }
+
+    public List<Flight> getFlight() {
+        return flight;
+    }
+
+    public void setFlight(List<Flight> flight) {
+        this.flight = flight;
     }
 
     @Override

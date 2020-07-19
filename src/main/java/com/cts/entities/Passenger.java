@@ -1,7 +1,10 @@
 package com.cts.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "passenger")
@@ -42,6 +45,14 @@ public class Passenger {
 
     @Column(name = "booking_id")
     private Long bookingId;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = BookingDetails.class)
+    @JoinColumn(name = "passenger_id")
+    private List<BookingDetails> bookingDetails;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private BookingRecord bookingRecord;
 
     public Long getPassengerId() {
         return passengerId;
@@ -97,6 +108,22 @@ public class Passenger {
 
     public void setBookingId(Long bookingId) {
         this.bookingId = bookingId;
+    }
+
+    public List<BookingDetails> getBookingDetails() {
+        return bookingDetails;
+    }
+
+    public void setBookingDetails(List<BookingDetails> bookingDetails) {
+        this.bookingDetails = bookingDetails;
+    }
+
+    public BookingRecord getBookingRecord() {
+        return bookingRecord;
+    }
+
+    public void setBookingRecord(BookingRecord bookingRecord) {
+        this.bookingRecord = bookingRecord;
     }
 
     @Override

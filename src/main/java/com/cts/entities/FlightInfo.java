@@ -2,6 +2,7 @@ package com.cts.entities;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "flight_info")
@@ -29,6 +30,14 @@ public class FlightInfo {
 
     @Column(name = "numberof_seats")
     private Integer numberOfSeats;
+
+    @OneToMany(targetEntity = Flight.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "flight_infoid")
+    private List<Flight> flight;
+
+    @OneToMany(targetEntity = FlightsInfo.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "flight_infoid")
+    private List<FlightsInfo> flightsInfos;
 
     public Long getFlightInfoId() {
         return flightInfoId;
@@ -60,6 +69,22 @@ public class FlightInfo {
 
     public void setNumberOfSeats(Integer numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
+    }
+
+    public List<Flight> getFlight() {
+        return flight;
+    }
+
+    public void setFlight(List<Flight> flight) {
+        this.flight = flight;
+    }
+
+    public List<FlightsInfo> getFlightsInfos() {
+        return flightsInfos;
+    }
+
+    public void setFlightsInfos(List<FlightsInfo> flightsInfos) {
+        this.flightsInfos = flightsInfos;
     }
 
     @Override
