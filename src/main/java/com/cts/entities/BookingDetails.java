@@ -11,6 +11,8 @@ public class BookingDetails {
     }
 
     @Column(name = "booking_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bookingId;
 
     @Column(name = "passenger_id")

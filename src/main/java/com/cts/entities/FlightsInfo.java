@@ -17,6 +17,8 @@ public class FlightsInfo {
     }
 
     @Column(name = "airline_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long airlineId;
 
     @Column(name = "flight_infoid")

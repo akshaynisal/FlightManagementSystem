@@ -37,16 +37,15 @@ public class Flight {
     @Column(name = "duration")
     private String duration;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "flight_date")
-    private java.sql.Date flightDate;
+    private Date flightDate;
 
     @Column(name = "flight_number")
     private String flightNumber;
 
     @Column(name = "flight_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.sql.Date flightTime;
+    @Temporal(value = TemporalType.TIME)
+    private java.util.Date flightTime;
 
     @Column(name = "origin")
     private String origin;
@@ -113,11 +112,11 @@ public class Flight {
         this.flightNumber = flightNumber;
     }
 
-    public Date getFlightTime() {
+    public java.util.Date getFlightTime() {
         return flightTime;
     }
 
-    public void setFlightTime(Date flightTime) {
+    public void setFlightTime(java.util.Date flightTime) {
         this.flightTime = flightTime;
     }
 

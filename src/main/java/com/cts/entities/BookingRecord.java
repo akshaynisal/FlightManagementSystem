@@ -25,11 +25,13 @@ public class BookingRecord {
     }
 
     @Column(name = "booking_id")
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
     private Long bookingId;
 
     @Column(name = "booking_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private java.sql.Date bookingDate;
+    private java.util.Date bookingDate;
 
     @Column(name = "destination")
     private String destination;
@@ -38,15 +40,14 @@ public class BookingRecord {
     private Double fare;
 
      @Column(name = "flight_date")
-     @Temporal(value = TemporalType.DATE)
-     private java.sql.Date flightDate;
+     private Date flightDate;
 
      @Column(name = "flight_number")
      private String flightNumber;
 
     @Column(name = "flight_time")
     @Temporal(TemporalType.TIME)
-    private java.sql.Date flightTime;
+    private java.util.Date flightTime;
 
     @Column(name = "origin")
     private String origin;
@@ -55,11 +56,11 @@ public class BookingRecord {
     private String status;
 
     @OneToMany(targetEntity = Passenger.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "booking_id")
+    @JoinColumn(name = "booking_Id")
     private List<Passenger> passengers;
 
     @OneToMany(targetEntity = BookingDetails.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "booking_id")
+    @JoinColumn(name = "booking_Id")
     private List<BookingDetails> bookingDetails;
 
     public Long getBookingId() {
@@ -70,8 +71,12 @@ public class BookingRecord {
         this.bookingId = bookingId;
     }
 
-    public Date getBookingDate() {
+    public java.util.Date getBookingDate() {
         return bookingDate;
+    }
+
+    public void setBookingDate(java.util.Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     public void setBookingDate(Date bookingDate) {
@@ -110,11 +115,11 @@ public class BookingRecord {
         this.flightNumber = flightNumber;
     }
 
-    public Date getFlightTime() {
+    public java.util.Date getFlightTime() {
         return flightTime;
     }
 
-    public void setFlightTime(Date flightTime) {
+    public void setFlightTime(java.util.Date flightTime) {
         this.flightTime = flightTime;
     }
 
