@@ -2,18 +2,20 @@ package com.cts.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 
 @Entity
-@Table(name = "flight")
-public class Flight {
+@Table(name = "flight" )
+public class Flight implements Serializable {
     public Flight() {
     }
 
-    public Flight(Long id, String destination, String duration, Date flightDate, String flightNumber, Date flightTime, String origin, Long fareId, Long flightInfoid, Long invId) {
+    public Flight(Long id, String destination, String duration, Date flightDate, String flightNumber, Date flightTime, String origin, Long fareId, Long flightInfoid, Long invId, Fare fare, FlightInfo fligthInfo, Inventory inventory) {
         this.id = id;
         this.destination = destination;
         this.duration = duration;
@@ -24,6 +26,9 @@ public class Flight {
         this.fareId = fareId;
         this.flightInfoid = flightInfoid;
         this.invId = invId;
+        this.fare = fare;
+        this.fligthInfo = fligthInfo;
+        this.inventory = inventory;
     }
 
     @Column(name = "id")
@@ -38,6 +43,8 @@ public class Flight {
     private String duration;
 
     @Column(name = "flight_date")
+    //@Temporal(value = TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date flightDate;
 
     @Column(name = "flight_number")

@@ -16,6 +16,13 @@ public class FlightsInfo {
         this.flightInfoId = flightInfoId;
     }
 
+    public FlightsInfo(Long airlineId, Long flightInfoId, AirlineInfo airlineInfo, FlightInfo flightInfo) {
+        this.airlineId = airlineId;
+        this.flightInfoId = flightInfoId;
+        this.airlineInfo = airlineInfo;
+        this.flightInfo = flightInfo;
+    }
+
     @Column(name = "airline_id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

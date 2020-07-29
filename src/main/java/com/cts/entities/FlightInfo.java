@@ -2,11 +2,12 @@ package com.cts.entities;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "flight_info")
-public class FlightInfo {
+public class FlightInfo implements Serializable {
     public FlightInfo() {
     }
 
@@ -15,6 +16,14 @@ public class FlightInfo {
         this.flightNumber = flightNumber;
         this.flightType = flightType;
         this.numberOfSeats = numberOfSeats;
+    }
+
+    public FlightInfo(Long flightInfoId, String flightNumber, String flightType, Integer numberOfSeats, List<FlightsInfo> flightsInfos) {
+        this.flightInfoId = flightInfoId;
+        this.flightNumber = flightNumber;
+        this.flightType = flightType;
+        this.numberOfSeats = numberOfSeats;
+        this.flightsInfos = flightsInfos;
     }
 
     @Column(name = "flight_infoid")

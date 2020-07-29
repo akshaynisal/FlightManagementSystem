@@ -2,11 +2,12 @@ package com.cts.entities;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "airline_info")
-public class AirlineInfo {
+public class AirlineInfo implements Serializable {
     public AirlineInfo() {
     }
 

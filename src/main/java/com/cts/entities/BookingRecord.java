@@ -3,7 +3,7 @@ package com.cts.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,6 +22,19 @@ public class BookingRecord {
         this.flightTime = flightTime;
         this.origin = origin;
         this.status = status;
+    }
+
+    public BookingRecord(Long bookingId, Date bookingDate, String destination, Double fare, Date flightDate, String flightNumber, Date flightTime, String origin, String status, List<Passenger> passengers) {
+        this.bookingId = bookingId;
+        this.bookingDate = bookingDate;
+        this.destination = destination;
+        this.fare = fare;
+        this.flightDate = flightDate;
+        this.flightNumber = flightNumber;
+        this.flightTime = flightTime;
+        this.origin = origin;
+        this.status = status;
+        this.passengers = passengers;
     }
 
     @Column(name = "booking_id")
@@ -73,10 +86,6 @@ public class BookingRecord {
 
     public java.util.Date getBookingDate() {
         return bookingDate;
-    }
-
-    public void setBookingDate(java.util.Date bookingDate) {
-        this.bookingDate = bookingDate;
     }
 
     public void setBookingDate(Date bookingDate) {

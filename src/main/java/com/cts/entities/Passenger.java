@@ -23,6 +23,17 @@ public class Passenger {
         this.bookingId = bookingId;
     }
 
+    public Passenger(Long passengerId, String emailAddress, String firstName, String gender, String lastName, Long mobileNumber, Long bookingId, List<BookingDetails> bookingDetails) {
+        this.passengerId = passengerId;
+        this.emailAddress = emailAddress;
+        this.firstName = firstName;
+        this.gender = gender;
+        this.lastName = lastName;
+        this.mobileNumber = mobileNumber;
+        this.bookingId = bookingId;
+        this.bookingDetails = bookingDetails;
+    }
+
     @Column(name = "passenger_id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

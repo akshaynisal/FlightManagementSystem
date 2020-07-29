@@ -1,11 +1,12 @@
 package com.cts.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "fare")
-public class Fare {
+public class Fare implements Serializable {
     public Fare() {
     }
 
@@ -27,7 +28,7 @@ public class Fare {
     private Double fare;
 
     @OneToMany(targetEntity = Flight.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fare_id")
+    @JoinColumn(name = "fare_id", referencedColumnName = "fare")
     private List<Flight> flight;
 
     public Long getFareId() {
